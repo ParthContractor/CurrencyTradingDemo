@@ -8,13 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		B23B42FA23A0C4A1000F957E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23B42F923A0C4A1000F957E /* AppDelegate.swift */; };
-		B23B42FC23A0C4A1000F957E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23B42FB23A0C4A1000F957E /* SceneDelegate.swift */; };
-		B23B42FE23A0C4A1000F957E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23B42FD23A0C4A1000F957E /* ViewController.swift */; };
-		B23B430123A0C4A1000F957E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B23B42FF23A0C4A1000F957E /* Main.storyboard */; };
 		B23B430323A0C4A3000F957E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B23B430223A0C4A3000F957E /* Assets.xcassets */; };
 		B23B430623A0C4A3000F957E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B23B430423A0C4A3000F957E /* LaunchScreen.storyboard */; };
 		B23B431123A0C4A3000F957E /* CurrencyTradingDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23B431023A0C4A3000F957E /* CurrencyTradingDemoTests.swift */; };
 		B23B431C23A0C4A3000F957E /* CurrencyTradingDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23B431B23A0C4A3000F957E /* CurrencyTradingDemoUITests.swift */; };
+		B23B432C23A0FFB0000F957E /* LandingScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23B432923A0FFAF000F957E /* LandingScreenViewModel.swift */; };
+		B23B432D23A0FFB0000F957E /* LandingScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23B432A23A0FFB0000F957E /* LandingScreenVC.swift */; };
+		B23B432E23A0FFB0000F957E /* LandingScreenVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B23B432B23A0FFB0000F957E /* LandingScreenVC.xib */; };
+		B23B433123A19E1E000F957E /* APIUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23B433023A19E1E000F957E /* APIUtility.swift */; };
+		B23B433423A19E2E000F957E /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23B433223A19E2E000F957E /* UIViewControllerExtensions.swift */; };
+		B23B433523A19E2E000F957E /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23B433323A19E2E000F957E /* UIViewExtensions.swift */; };
+		B23B433823A1A0C1000F957E /* PriceInfoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23B433723A1A0C1000F957E /* PriceInfoProvider.swift */; };
+		B23B433A23A1A2F1000F957E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23B433923A1A2F1000F957E /* Constants.swift */; };
+		B23B433D23A1A770000F957E /* JSONModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23B433C23A1A770000F957E /* JSONModels.swift */; };
+		B23B433F23A1AA9E000F957E /* BitcoinPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23B433E23A1AA9E000F957E /* BitcoinPrice.swift */; };
+		B23B434123A1C5DD000F957E /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23B434023A1C5DD000F957E /* DoubleExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,9 +45,6 @@
 /* Begin PBXFileReference section */
 		B23B42F623A0C4A1000F957E /* CurrencyTradingDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CurrencyTradingDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B23B42F923A0C4A1000F957E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B23B42FB23A0C4A1000F957E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B23B42FD23A0C4A1000F957E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		B23B430023A0C4A1000F957E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B23B430223A0C4A3000F957E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B23B430523A0C4A3000F957E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B23B430723A0C4A3000F957E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +54,17 @@
 		B23B431723A0C4A3000F957E /* CurrencyTradingDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CurrencyTradingDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B23B431B23A0C4A3000F957E /* CurrencyTradingDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTradingDemoUITests.swift; sourceTree = "<group>"; };
 		B23B431D23A0C4A3000F957E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B23B432923A0FFAF000F957E /* LandingScreenViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingScreenViewModel.swift; sourceTree = "<group>"; };
+		B23B432A23A0FFB0000F957E /* LandingScreenVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingScreenVC.swift; sourceTree = "<group>"; };
+		B23B432B23A0FFB0000F957E /* LandingScreenVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LandingScreenVC.xib; sourceTree = "<group>"; };
+		B23B433023A19E1E000F957E /* APIUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIUtility.swift; sourceTree = "<group>"; };
+		B23B433223A19E2E000F957E /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
+		B23B433323A19E2E000F957E /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
+		B23B433723A1A0C1000F957E /* PriceInfoProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceInfoProvider.swift; sourceTree = "<group>"; };
+		B23B433923A1A2F1000F957E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		B23B433C23A1A770000F957E /* JSONModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONModels.swift; sourceTree = "<group>"; };
+		B23B433E23A1AA9E000F957E /* BitcoinPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitcoinPrice.swift; sourceTree = "<group>"; };
+		B23B434023A1C5DD000F957E /* DoubleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,9 +116,12 @@
 			isa = PBXGroup;
 			children = (
 				B23B42F923A0C4A1000F957E /* AppDelegate.swift */,
-				B23B42FB23A0C4A1000F957E /* SceneDelegate.swift */,
-				B23B42FD23A0C4A1000F957E /* ViewController.swift */,
-				B23B42FF23A0C4A1000F957E /* Main.storyboard */,
+				B23B432A23A0FFB0000F957E /* LandingScreenVC.swift */,
+				B23B432B23A0FFB0000F957E /* LandingScreenVC.xib */,
+				B23B432923A0FFAF000F957E /* LandingScreenViewModel.swift */,
+				B23B433B23A1A5CB000F957E /* Models */,
+				B23B433623A1A00A000F957E /* DataProviders */,
+				B23B432F23A19DF4000F957E /* Helpers */,
 				B23B430223A0C4A3000F957E /* Assets.xcassets */,
 				B23B430423A0C4A3000F957E /* LaunchScreen.storyboard */,
 				B23B430723A0C4A3000F957E /* Info.plist */,
@@ -126,6 +145,35 @@
 				B23B431D23A0C4A3000F957E /* Info.plist */,
 			);
 			path = CurrencyTradingDemoUITests;
+			sourceTree = "<group>";
+		};
+		B23B432F23A19DF4000F957E /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				B23B433923A1A2F1000F957E /* Constants.swift */,
+				B23B433023A19E1E000F957E /* APIUtility.swift */,
+				B23B433223A19E2E000F957E /* UIViewControllerExtensions.swift */,
+				B23B433323A19E2E000F957E /* UIViewExtensions.swift */,
+				B23B434023A1C5DD000F957E /* DoubleExtension.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		B23B433623A1A00A000F957E /* DataProviders */ = {
+			isa = PBXGroup;
+			children = (
+				B23B433723A1A0C1000F957E /* PriceInfoProvider.swift */,
+			);
+			path = DataProviders;
+			sourceTree = "<group>";
+		};
+		B23B433B23A1A5CB000F957E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B23B433C23A1A770000F957E /* JSONModels.swift */,
+				B23B433E23A1AA9E000F957E /* BitcoinPrice.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,9 +280,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B23B432E23A0FFB0000F957E /* LandingScreenVC.xib in Resources */,
 				B23B430623A0C4A3000F957E /* LaunchScreen.storyboard in Resources */,
 				B23B430323A0C4A3000F957E /* Assets.xcassets in Resources */,
-				B23B430123A0C4A1000F957E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,9 +307,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B23B42FE23A0C4A1000F957E /* ViewController.swift in Sources */,
+				B23B432C23A0FFB0000F957E /* LandingScreenViewModel.swift in Sources */,
+				B23B433823A1A0C1000F957E /* PriceInfoProvider.swift in Sources */,
+				B23B433123A19E1E000F957E /* APIUtility.swift in Sources */,
+				B23B434123A1C5DD000F957E /* DoubleExtension.swift in Sources */,
+				B23B433D23A1A770000F957E /* JSONModels.swift in Sources */,
+				B23B433F23A1AA9E000F957E /* BitcoinPrice.swift in Sources */,
+				B23B433423A19E2E000F957E /* UIViewControllerExtensions.swift in Sources */,
+				B23B432D23A0FFB0000F957E /* LandingScreenVC.swift in Sources */,
+				B23B433523A19E2E000F957E /* UIViewExtensions.swift in Sources */,
 				B23B42FA23A0C4A1000F957E /* AppDelegate.swift in Sources */,
-				B23B42FC23A0C4A1000F957E /* SceneDelegate.swift in Sources */,
+				B23B433A23A1A2F1000F957E /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,14 +353,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		B23B42FF23A0C4A1000F957E /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B23B430023A0C4A1000F957E /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		B23B430423A0C4A3000F957E /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -436,6 +484,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = CurrencyTradingDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -453,6 +502,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = CurrencyTradingDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
