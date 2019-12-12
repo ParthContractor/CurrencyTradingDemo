@@ -15,6 +15,33 @@ class LandingScreenViewModel {
         self.navigationBarTitle = "Bitcoin Trading"
     }
     
+    func priceInfoBuyRateAnimationRequired(_ row: Int, oldBuyRateText: String, oldSellRateText: String) -> (Bool,Bool) {
+        var animationBuyRate = false
+        var animationSellRate = false
+        guard let obj = PriceInfoProvider.shared.bitcoinPriceInfoArray[safeIndex: row] else{
+            return (animationBuyRate, animationSellRate)
+        }
+
+        if oldBuyRateText != formattedBuyRate(strSymbol: obj.symbol, strBuyRate: obj.buyRate) {
+            animationBuyRate = true
+        }
+        if oldSellRateText != formattedSellRate(strSymbol: obj.symbol, strSellRate: obj.sellRate) {
+            animationSellRate = true
+        }
+        return (animationBuyRate, animationSellRate)
+    }
+    
+    func priceInfoSellRateAnimationRequired(_ row: Int, oldText: String) -> Bool {
+        var animation = false
+        guard let obj = PriceInfoProvider.shared.bitcoinPriceInfoArray[safeIndex: row] else{
+            return animation
+        }
+        if oldText != obj.buyRate {
+            animation = true
+        }
+        return animation
+    }
+    
     func priceInfoObjectAt(_ row: Int) -> BitcoinPriceInfo? {
         guard let obj = PriceInfoProvider.shared.bitcoinPriceInfoArray[safeIndex: row] else{
             return nil
@@ -36,7 +63,8 @@ class LandingScreenViewModel {
         guard let obj = PriceInfoProvider.shared.bitcoinPriceInfoArray[safeIndex: row] else{
             return str
         }
-        str = "Buy @ " + obj.symbol + " " + obj.buyRate
+        str = formattedBuyRate(strSymbol: obj.symbol, strBuyRate: obj.buyRate)
+        obj.lastStoredBuyRate = str
         return str
     }
     
@@ -45,8 +73,21 @@ class LandingScreenViewModel {
         guard let obj = PriceInfoProvider.shared.bitcoinPriceInfoArray[safeIndex: row] else {
             return str
         }
-        str = "Sell @ " + obj.symbol + " " + obj.sellRate
+        str = formattedSellRate(strSymbol: obj.symbol, strSellRate: obj.sellRate)
+        obj.lastStoredSellRate = str
         return str
+    }
+    
+    private func formattedBuyRate(strSymbol: String, strBuyRate: String) -> String {
+           var str = String()
+           str = "Buy @ " + strSymbol + " " + strBuyRate
+           return str
+    }
+    
+    private func formattedSellRate(strSymbol: String, strSellRate: String) -> String {
+           var str = String()
+           str = "Sell @ " + strSymbol + " " + strSellRate
+           return str
     }
     
     func initialDataLoading(){

@@ -7,7 +7,23 @@
 //
 
 import UIKit
-
+extension UITableView {
+func reloadWithAnimation() {
+    self.reloadData()
+    let tableViewHeight = self.bounds.size.height
+    let cells = self.visibleCells
+    var delayCounter = 0
+    for cell in cells {
+        cell.transform = CGAffineTransform(translationX: 0, y: tableViewHeight)
+    }
+    for cell in cells {
+        UIView.animate(withDuration: 1.6, delay: 0.08 * Double(delayCounter),usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+            cell.transform = CGAffineTransform.identity
+        }, completion: nil)
+        delayCounter += 1
+    }
+}
+}
 class LandingScreenVC: UIViewController {
         
     let viewModel = LandingScreenViewModel()
@@ -84,6 +100,7 @@ class LandingScreenVC: UIViewController {
             objPriceInfo.addObserver(self, forKeyPath: "buyRate", options: [.new,.old], context: nil)
             objPriceInfo.addObserver(self, forKeyPath: "sellRate", options: [.new,.old], context: nil)
         }
+        PriceInfoProvider.shared.sortByCurrencyName()
         reloadData()
     }
     
@@ -134,10 +151,13 @@ extension LandingScreenVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: BitcoinRateListCell.cellIdentifier) as! BitcoinRateListCell
+        let objPrice = viewModel.priceInfoObjectAt(indexPath.row)
+        let animation = viewModel.priceInfoBuyRateAnimationRequired(indexPath.row, oldBuyRateText: objPrice?.lastStoredBuyRate ?? "", oldSellRateText: objPrice?.lastStoredSellRate ?? "")
         cell.currencyLabel.text = viewModel.currencyLabelValue(indexPath.row)
         cell.accessibilityIdentifier = viewModel.currencyLabelValue(indexPath.row)
         cell.buyRateLabel.text =  viewModel.buyRateLabelValue(indexPath.row)
         cell.sellRateLabel.text = viewModel.sellRateLabelValue(indexPath.row)
+        cell.animateLabelColor(animation)
         return cell
     }
     

@@ -14,6 +14,8 @@ public class BitcoinPriceInfo: NSObject {
     @objc dynamic var sellRate: String
     @objc dynamic var symbol: String
     var ID: Int?
+    var lastStoredBuyRate: String?
+    var lastStoredSellRate: String?
 
     init(currencyName: String, buyRate: String, sellRate: String, symbol: String) {
         self.currencyName = currencyName
