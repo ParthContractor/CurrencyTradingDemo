@@ -37,6 +37,12 @@ final class PriceInfoProvider {
                     self.firstTimeDataSetUp = true
                 }
             }
+            else{
+                //reload visible data after update....
+                DispatchQueue.main.async {
+                    NotificationCenter.default.post(name: .followUpReloadPriceInfo, object: nil)
+                }
+            }
         })
     }
     
@@ -116,8 +122,8 @@ final class PriceInfoProvider {
                 }
                 else{
                     //new element found hence add it in array and notify..
+                    newObj.ID = self.bitcoinPriceInfoArray.count
                     self.bitcoinPriceInfoArray.append(newObj)
-                    self.sortByCurrencyName()
                     print("addition")
                 }
               }

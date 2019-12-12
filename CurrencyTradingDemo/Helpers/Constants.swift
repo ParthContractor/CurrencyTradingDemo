@@ -21,5 +21,22 @@ struct Constants {
 
 extension Notification.Name {
     static let firstTimeBitcoinPriceInfo = Notification.Name("firstTimeBitcoinPriceInfo")
+    static let followUpReloadPriceInfo = Notification.Name("followUpReloadPriceInfo")
 }
 
+extension UIFont {
+    struct ThemeFont {
+        static let currencyRatesListTitleFont = UIFont.systemFont(ofSize: 25)
+        static let currencyRatesListDetailFont = UIFont.systemFont(ofSize: 20)
+    }
+}
+
+extension UIColor {
+    struct ThemeColor {
+        static let navigationBarTintColor = UIColor.orange
+        static let navigationTintColor = UIColor.yellow
+        static let currencyNameDisplayColor = UIColor.darkGray
+        static let currencyBuyRateColor = UIColor.black
+        static let currencySellRateColor = UIColor.black
+    }
+}

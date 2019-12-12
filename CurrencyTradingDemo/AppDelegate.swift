@@ -20,9 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         redirectToLandingScreen()
 
-        //initial setup of shared price info provider
-        PriceInfoProvider.shared.fetchLatestPriceInfo()
-
         return true
     }
 
@@ -33,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
         
     func decorateNavigationBarAppearance() {
-//        UINavigationBar.appearance().barTintColor = UIColor.landmarkRemarkTheme
+        UINavigationBar.appearance().barTintColor = UIColor.lightGray
         UINavigationBar.appearance().tintColor = UIColor.black
     }
     

@@ -12,6 +12,8 @@ class LandingScreenVC: UIViewController {
         
     let viewModel = LandingScreenViewModel()
 
+    @IBOutlet var tableViewBitcoinRateList: UITableView!
+
     // MARK: - ViewController LifeCycle
     init(nibName:String){
         super.init(nibName: nibName, bundle: nil)
@@ -23,12 +25,24 @@ class LandingScreenVC: UIViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        initialSetUp()
         setUpData()
+    }
+    
+    func initialSetUp(){
+        tableViewBitcoinRateList.rowHeight = UITableView.automaticDimension
+        tableViewBitcoinRateList.estimatedRowHeight = 80
+        
+        //tableview cell registeration
+        tableViewBitcoinRateList.register(UINib(nibName: "BitcoinRateListCell", bundle: nil), forCellReuseIdentifier: BitcoinRateListCell.cellIdentifier)
+        tableViewBitcoinRateList.tableFooterView = UIView()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(initialBitcoinPriceInfoAvailable(_:)), name: .firstTimeBitcoinPriceInfo, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(followUpPriceInfoAvailable), name: .followUpReloadPriceInfo, object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -40,8 +54,28 @@ class LandingScreenVC: UIViewController {
     // MARK: - Helper methods
     private func setUpData() {
         title = viewModel.navigationBarTitle
+        viewModel.initialDataLoading()
     }
 
+    private func reloadData() {
+        DispatchQueue.main.async {
+            self.tableViewBitcoinRateList.reloadData()
+        }
+    }
+    
+    private func reloadVisibleData() {
+           DispatchQueue.main.async {
+               self.tableViewBitcoinRateList.reloadRows(at: self.tableViewBitcoinRateList.indexPathsForVisibleRows!, with: .none)
+           }
+    }
+    
+    private func reloadRow(_ row: Int) {
+        self.tableViewBitcoinRateList.beginUpdates()
+        let indexPath = NSIndexPath.init(row:  row, section: 0)
+        self.tableViewBitcoinRateList.reloadRows(at: [indexPath as IndexPath], with: .none)
+        self.tableViewBitcoinRateList.endUpdates()
+    }
+    
     // MARK: - Notification Observer
     @objc func initialBitcoinPriceInfoAvailable(_ notification: Notification)
     {
@@ -50,9 +84,16 @@ class LandingScreenVC: UIViewController {
             objPriceInfo.addObserver(self, forKeyPath: "buyRate", options: [.new,.old], context: nil)
             objPriceInfo.addObserver(self, forKeyPath: "sellRate", options: [.new,.old], context: nil)
         }
-        
+        reloadData()
     }
     
+    @objc func followUpPriceInfoAvailable(_ notification: Notification)
+    {
+        DispatchQueue.main.async {
+            self.reloadVisibleData()
+        }
+    }
+
     override func observeValue(forKeyPath keyPath: String?,
                                   of object: Any?,
                                   change: [NSKeyValueChangeKey : Any]?,
@@ -70,8 +111,35 @@ class LandingScreenVC: UIViewController {
             if object is BitcoinPriceInfo {
                 let obj = object as! BitcoinPriceInfo
                 print("object currency \(obj.currencyName)")
+                print("object currency  id  \(obj.ID ?? 0)")
+//                if let id = obj.ID {
+//                    reloadRow(id)
+//                }
             }
         }
         
     }
 }
+
+extension LandingScreenVC: UITableViewDataSource, UITableViewDelegate {
+    
+    // MARK: - Tableview delegate/datasource methods
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return PriceInfoProvider.shared.bitcoinPriceInfoArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+         cell.accessoryType = .disclosureIndicator
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: BitcoinRateListCell.cellIdentifier) as! BitcoinRateListCell
+        cell.currencyLabel.text = viewModel.currencyLabelValue(indexPath.row)
+        cell.accessibilityIdentifier = viewModel.currencyLabelValue(indexPath.row)
+        cell.buyRateLabel.text =  viewModel.buyRateLabelValue(indexPath.row)
+        cell.sellRateLabel.text = viewModel.sellRateLabelValue(indexPath.row)
+        return cell
+    }
+    
+}
+

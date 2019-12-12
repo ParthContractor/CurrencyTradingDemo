@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina3_5" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -9,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LandingScreenVC" customModule="CurrencyTradingDemo" customModuleProvider="target">
             <connections>
+                <outlet property="tableViewBitcoinRateList" destination="w8f-BO-IUs" id="uNh-54-KLx"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -16,7 +18,23 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="363" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="w8f-BO-IUs">
+                    <rect key="frame" x="0.0" y="0.0" width="363" height="480"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="LnN-yC-mqs"/>
+                        <outlet property="delegate" destination="-1" id="hxI-1S-kvL"/>
+                    </connections>
+                </tableView>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="w8f-BO-IUs" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="D4v-9t-GcX"/>
+                <constraint firstItem="w8f-BO-IUs" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Zcg-Bp-r4G"/>
+                <constraint firstItem="w8f-BO-IUs" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="wUK-rs-Doj"/>
+                <constraint firstItem="w8f-BO-IUs" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="zpB-9R-rHJ"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="-235.3125" y="58.75"/>
