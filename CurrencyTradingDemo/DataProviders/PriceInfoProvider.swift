@@ -9,9 +9,12 @@
 import Foundation
 import UIKit
 
-final class PriceInfoProvider{
+typealias BitcoinPriceInfoCheck = (exists: Bool, matchedObj: BitcoinPriceInfo?, matchedIndex: Int?)
+
+final class PriceInfoProvider {
     static let shared = PriceInfoProvider()
     private var priceUpdateTimer: Timer!
+    private var firstTimeDataSetUp = false
 
     private init(){
         startTimer()
@@ -22,15 +25,17 @@ final class PriceInfoProvider{
         fetchLatestPriceInfo()
     }
     
-    private(set) var bitcoinPriceInfoArray = [BitcoinPrice]()
+    private(set) var bitcoinPriceInfoArray = [BitcoinPriceInfo]()
 
     func fetchLatestPriceInfo() {
-        self.bitcoinPriceInfoArray.removeAll()
         self.getBitcoinPriceInfo(completion: { (success) -> () in
-            self.sortByCurrencyName()
-            print("\(self.bitcoinPriceInfoArray)")
-            DispatchQueue.main.async {
-                NotificationCenter.default.post(name: .fetchLatestBitcoinPriceInfo, object: nil)
+            print("count is: \(self.bitcoinPriceInfoArray.count)")
+            if self.firstTimeDataSetUp == false {
+                DispatchQueue.main.async {
+                    NotificationCenter.default.post(name: .firstTimeBitcoinPriceInfo, object: nil)
+                    //post notification only once initially...
+                    self.firstTimeDataSetUp = true
+                }
             }
         })
     }
@@ -93,8 +98,39 @@ final class PriceInfoProvider{
     private func populateDataToBitcoinPriceList(_ container: Containers) {
           for containerInnerItem in container.inner {
               if containerInnerItem.title.count != 0, let buyRate = containerInnerItem.buy, let sellRate = containerInnerItem.sell {
-                self.bitcoinPriceInfoArray.append(BitcoinPrice(currencyName: containerInnerItem.title, buyRate: buyRate.roundedStringValue(to: 2), sellRate: sellRate.roundedStringValue(to: 2), symbol: containerInnerItem.symbol))
+                let newObj = BitcoinPriceInfo(currencyName: containerInnerItem.title, buyRate: buyRate.roundedStringValue(to: 2), sellRate: sellRate.roundedStringValue(to: 2), symbol: containerInnerItem.symbol)
+                
+                let bitCoinPriceInfoCheck = checkIfObjectExists(newObj.currencyName)
+                if let matchedObj = bitCoinPriceInfoCheck.matchedObj {
+                    if newObj != matchedObj {
+                        //update in existing element found hence update it in array and notify..
+                        self.bitcoinPriceInfoArray[bitCoinPriceInfoCheck.matchedIndex!].setValue(newObj.currencyName, forKey:"currencyName")
+                        self.bitcoinPriceInfoArray[bitCoinPriceInfoCheck.matchedIndex!].setValue(newObj.buyRate, forKey:"buyRate")
+                        self.bitcoinPriceInfoArray[bitCoinPriceInfoCheck.matchedIndex!].setValue(newObj.sellRate, forKey:"sellRate")
+                        self.bitcoinPriceInfoArray[bitCoinPriceInfoCheck.matchedIndex!].setValue(newObj.symbol, forKey:"symbol")
+                        print("update")
+                    }
+                    else{
+                        print("no update")
+                    }
+                }
+                else{
+                    //new element found hence add it in array and notify..
+                    self.bitcoinPriceInfoArray.append(newObj)
+                    self.sortByCurrencyName()
+                    print("addition")
+                }
               }
           }
       }
+    
+    private func checkIfObjectExists(_ currencyIdentifier: String) -> BitcoinPriceInfoCheck {
+        let matchedObject = self.bitcoinPriceInfoArray.first{ $0.currencyName == currencyIdentifier}
+        if let objFound = matchedObject {
+            let indexOfFoundObject = self.bitcoinPriceInfoArray.firstIndex { $0.currencyName == currencyIdentifier}
+            return (true,objFound,indexOfFoundObject)
+        } else {
+            return (false,nil,nil)
+        }
+    }
 }

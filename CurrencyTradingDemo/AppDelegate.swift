@@ -20,6 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         redirectToLandingScreen()
 
+        //initial setup of shared price info provider
+        PriceInfoProvider.shared.fetchLatestPriceInfo()
+
         return true
     }
 

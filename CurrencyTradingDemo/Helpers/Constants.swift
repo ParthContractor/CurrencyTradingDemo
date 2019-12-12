@@ -20,6 +20,6 @@ struct Constants {
 }
 
 extension Notification.Name {
-    static let fetchLatestBitcoinPriceInfo = Notification.Name("fetchLatestBitcoinPriceInfo")
+    static let firstTimeBitcoinPriceInfo = Notification.Name("firstTimeBitcoinPriceInfo")
 }
 

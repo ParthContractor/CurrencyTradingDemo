@@ -116,9 +116,8 @@
 			isa = PBXGroup;
 			children = (
 				B23B42F923A0C4A1000F957E /* AppDelegate.swift */,
-				B23B432A23A0FFB0000F957E /* LandingScreenVC.swift */,
-				B23B432B23A0FFB0000F957E /* LandingScreenVC.xib */,
-				B23B432923A0FFAF000F957E /* LandingScreenViewModel.swift */,
+				B23B434323A1E002000F957E /* ViewModels */,
+				B23B434223A1E002000F957E /* Views */,
 				B23B433B23A1A5CB000F957E /* Models */,
 				B23B433623A1A00A000F957E /* DataProviders */,
 				B23B432F23A19DF4000F957E /* Helpers */,
@@ -174,6 +173,23 @@
 				B23B433E23A1AA9E000F957E /* BitcoinPrice.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		B23B434223A1E002000F957E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B23B432A23A0FFB0000F957E /* LandingScreenVC.swift */,
+				B23B432B23A0FFB0000F957E /* LandingScreenVC.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B23B434323A1E002000F957E /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				B23B432923A0FFAF000F957E /* LandingScreenViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
