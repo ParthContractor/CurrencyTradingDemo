@@ -139,12 +139,17 @@ extension LandingScreenVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
          cell.accessoryType = .disclosureIndicator
+         cell.tintColor = .white
+         let image = UIImage(named:"IndicatorArrow")?.withRenderingMode(.alwaysTemplate)
+             let disclosureImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
+        disclosureImageView.image = image
+        cell.accessoryView = disclosureImageView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: BitcoinRateListCell.cellIdentifier) as! BitcoinRateListCell
         let objPrice = viewModel.priceInfoObjectAt(indexPath.row)
-        let animation = viewModel.priceInfoBuyRateAnimationRequired(indexPath.row, oldBuyRateText: objPrice?.lastStoredBuyRate ?? "", oldSellRateText: objPrice?.lastStoredSellRate ?? "")
+        let animation = viewModel.priceInfoRateAnimationRequired(indexPath.row, oldBuyRateText: objPrice?.lastStoredBuyRate ?? "", oldSellRateText: objPrice?.lastStoredSellRate ?? "")
         cell.currencyLabel.text = viewModel.currencyLabelValue(indexPath.row)
         cell.accessibilityIdentifier = viewModel.currencyLabelValue(indexPath.row)
         cell.animateLabelColor(animation, buyRateLabelValue: viewModel.buyRateLabelValue(indexPath.row), sellRateLabelValue: viewModel.sellRateLabelValue(indexPath.row))

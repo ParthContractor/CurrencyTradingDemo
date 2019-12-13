@@ -15,7 +15,7 @@ class LandingScreenViewModel {
         self.navigationBarTitle = "Bitcoin Trading"
     }
     
-    func priceInfoBuyRateAnimationRequired(_ row: Int, oldBuyRateText: String, oldSellRateText: String) -> (Bool,Bool) {
+    func priceInfoRateAnimationRequired(_ row: Int, oldBuyRateText: String, oldSellRateText: String) -> (Bool,Bool) {
         var animationBuyRate = false
         var animationSellRate = false
         guard let obj = PriceInfoProvider.shared.bitcoinPriceInfoArray[safeIndex: row] else{
@@ -30,18 +30,7 @@ class LandingScreenViewModel {
         }
         return (animationBuyRate, animationSellRate)
     }
-    
-    func priceInfoSellRateAnimationRequired(_ row: Int, oldText: String) -> Bool {
-        var animation = false
-        guard let obj = PriceInfoProvider.shared.bitcoinPriceInfoArray[safeIndex: row] else{
-            return animation
-        }
-        if oldText != obj.buyRate {
-            animation = true
-        }
-        return animation
-    }
-    
+        
     func priceInfoObjectAt(_ row: Int) -> BitcoinPriceInfo? {
         guard let obj = PriceInfoProvider.shared.bitcoinPriceInfoArray[safeIndex: row] else{
             return nil

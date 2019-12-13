@@ -26,6 +26,9 @@
 		B23B434923A23FA3000F957E /* BitcoinRateListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23B434723A23FA3000F957E /* BitcoinRateListCell.swift */; };
 		B23B434A23A23FA3000F957E /* BitcoinRateListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B23B434823A23FA3000F957E /* BitcoinRateListCell.xib */; };
 		B23B434C23A24687000F957E /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23B434B23A24687000F957E /* ArrayExtension.swift */; };
+		B23B434E23A369A4000F957E /* CurrencyOrderDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23B434D23A369A4000F957E /* CurrencyOrderDetailsViewModel.swift */; };
+		B23B435123A369CC000F957E /* CurrencyOrderDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23B434F23A369CC000F957E /* CurrencyOrderDetailsVC.swift */; };
+		B23B435223A369CC000F957E /* CurrencyOrderDetailsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B23B435023A369CC000F957E /* CurrencyOrderDetailsVC.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +74,9 @@
 		B23B434723A23FA3000F957E /* BitcoinRateListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitcoinRateListCell.swift; sourceTree = "<group>"; };
 		B23B434823A23FA3000F957E /* BitcoinRateListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BitcoinRateListCell.xib; sourceTree = "<group>"; };
 		B23B434B23A24687000F957E /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
+		B23B434D23A369A4000F957E /* CurrencyOrderDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyOrderDetailsViewModel.swift; sourceTree = "<group>"; };
+		B23B434F23A369CC000F957E /* CurrencyOrderDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyOrderDetailsVC.swift; sourceTree = "<group>"; };
+		B23B435023A369CC000F957E /* CurrencyOrderDetailsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurrencyOrderDetailsVC.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +194,8 @@
 			children = (
 				B23B432A23A0FFB0000F957E /* LandingScreenVC.swift */,
 				B23B432B23A0FFB0000F957E /* LandingScreenVC.xib */,
+				B23B434F23A369CC000F957E /* CurrencyOrderDetailsVC.swift */,
+				B23B435023A369CC000F957E /* CurrencyOrderDetailsVC.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -196,6 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				B23B432923A0FFAF000F957E /* LandingScreenViewModel.swift */,
+				B23B434D23A369A4000F957E /* CurrencyOrderDetailsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -316,6 +325,7 @@
 				B23B434A23A23FA3000F957E /* BitcoinRateListCell.xib in Resources */,
 				B23B432E23A0FFB0000F957E /* LandingScreenVC.xib in Resources */,
 				B23B430623A0C4A3000F957E /* LaunchScreen.storyboard in Resources */,
+				B23B435223A369CC000F957E /* CurrencyOrderDetailsVC.xib in Resources */,
 				B23B430323A0C4A3000F957E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -353,7 +363,9 @@
 				B23B433523A19E2E000F957E /* UIViewExtensions.swift in Sources */,
 				B23B42FA23A0C4A1000F957E /* AppDelegate.swift in Sources */,
 				B23B433A23A1A2F1000F957E /* Constants.swift in Sources */,
+				B23B435123A369CC000F957E /* CurrencyOrderDetailsVC.swift in Sources */,
 				B23B434C23A24687000F957E /* ArrayExtension.swift in Sources */,
+				B23B434E23A369A4000F957E /* CurrencyOrderDetailsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
