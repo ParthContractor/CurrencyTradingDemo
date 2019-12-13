@@ -35,8 +35,8 @@ extension UIColor {
     struct ThemeColor {
         static let navigationBarTintColor = UIColor.orange
         static let navigationTintColor = UIColor.yellow
-        static let currencyNameDisplayColor = UIColor.darkGray
-        static let currencyBuyRateColor = UIColor.black
-        static let currencySellRateColor = UIColor.black
+        static let currencyNameDisplayColor = UIColor.lightText
+        static let currencyBuyRateColor = UIColor.white
+        static let currencySellRateColor = UIColor.white
     }
 }

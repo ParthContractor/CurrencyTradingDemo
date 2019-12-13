@@ -22,10 +22,10 @@ class LandingScreenViewModel {
             return (animationBuyRate, animationSellRate)
         }
 
-        if oldBuyRateText != formattedBuyRate(strSymbol: obj.symbol, strBuyRate: obj.buyRate) {
+        if oldBuyRateText != obj.buyRate {
             animationBuyRate = true
         }
-        if oldSellRateText != formattedSellRate(strSymbol: obj.symbol, strSellRate: obj.sellRate) {
+        if oldSellRateText != obj.sellRate {
             animationSellRate = true
         }
         return (animationBuyRate, animationSellRate)
@@ -64,7 +64,7 @@ class LandingScreenViewModel {
             return str
         }
         str = formattedBuyRate(strSymbol: obj.symbol, strBuyRate: obj.buyRate)
-        obj.lastStoredBuyRate = str
+        obj.lastStoredBuyRate = obj.buyRate
         return str
     }
     
@@ -74,7 +74,7 @@ class LandingScreenViewModel {
             return str
         }
         str = formattedSellRate(strSymbol: obj.symbol, strSellRate: obj.sellRate)
-        obj.lastStoredSellRate = str
+        obj.lastStoredSellRate = obj.sellRate
         return str
     }
     

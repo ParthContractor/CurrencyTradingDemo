@@ -41,21 +41,26 @@ class BitcoinRateListCell: UITableViewCell {
         sellRateLabel.textColor = UIColor.ThemeColor.currencyBuyRateColor
     }
     
-    func animateLabelColor(_ animation: (Bool,Bool)){
+    func animateLabelColor(_ animation: (Bool,Bool), buyRateLabelValue: String, sellRateLabelValue: String){
         if animation.0 == true {
-            UIView.transition(with: buyRateLabel, duration: 1.0, options: .transitionCrossDissolve, animations: {
+            UIView.transition(with: buyRateLabel, duration: 0.8, options: .transitionCrossDissolve, animations: {
+                self.buyRateLabel.text = buyRateLabelValue
                 self.buyRateLabel.textColor = UIColor.red
             }, completion: { _ in
                 self.buyRateLabel.textColor = UIColor.ThemeColor.currencyBuyRateColor
+                if animation.1 == true {
+                    UIView.transition(with: self.sellRateLabel, duration: 0.8, options: .transitionCrossDissolve, animations: {
+                        self.sellRateLabel.text = sellRateLabelValue
+                        self.sellRateLabel.textColor = UIColor.green
+                    }, completion: { _ in
+                        self.sellRateLabel.textColor = UIColor.ThemeColor.currencyBuyRateColor
+                    })
+                }
             })
         }
-        
-        if animation.1 == true {
-            UIView.transition(with: self.sellRateLabel, duration: 0.5, options: .transitionCrossDissolve, animations: {
-                self.sellRateLabel.textColor = UIColor.green
-            }, completion: { _ in
-                self.sellRateLabel.textColor = UIColor.ThemeColor.currencyBuyRateColor
-            })
+        else{
+            self.buyRateLabel.text = buyRateLabelValue
+            self.sellRateLabel.text = sellRateLabelValue
         }
     }
 

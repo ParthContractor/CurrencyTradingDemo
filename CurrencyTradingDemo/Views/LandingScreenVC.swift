@@ -7,23 +7,7 @@
 //
 
 import UIKit
-extension UITableView {
-func reloadWithAnimation() {
-    self.reloadData()
-    let tableViewHeight = self.bounds.size.height
-    let cells = self.visibleCells
-    var delayCounter = 0
-    for cell in cells {
-        cell.transform = CGAffineTransform(translationX: 0, y: tableViewHeight)
-    }
-    for cell in cells {
-        UIView.animate(withDuration: 1.6, delay: 0.08 * Double(delayCounter),usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
-            cell.transform = CGAffineTransform.identity
-        }, completion: nil)
-        delayCounter += 1
-    }
-}
-}
+
 class LandingScreenVC: UIViewController {
         
     let viewModel = LandingScreenViewModel()
@@ -47,7 +31,7 @@ class LandingScreenVC: UIViewController {
     
     func initialSetUp(){
         tableViewBitcoinRateList.rowHeight = UITableView.automaticDimension
-        tableViewBitcoinRateList.estimatedRowHeight = 80
+        tableViewBitcoinRateList.estimatedRowHeight = 126
         
         //tableview cell registeration
         tableViewBitcoinRateList.register(UINib(nibName: "BitcoinRateListCell", bundle: nil), forCellReuseIdentifier: BitcoinRateListCell.cellIdentifier)
@@ -86,13 +70,13 @@ class LandingScreenVC: UIViewController {
     }
     
     private func reloadRow(_ row: Int) {
-        self.tableViewBitcoinRateList.beginUpdates()
         let indexPath = NSIndexPath.init(row:  row, section: 0)
-        self.tableViewBitcoinRateList.reloadRows(at: [indexPath as IndexPath], with: .none)
-        self.tableViewBitcoinRateList.endUpdates()
+        DispatchQueue.main.async {
+            self.tableViewBitcoinRateList.reloadRows(at: [indexPath as IndexPath], with: .none)
+        }
     }
     
-    // MARK: - Notification Observer
+    // MARK: - Observers
     @objc func initialBitcoinPriceInfoAvailable(_ notification: Notification)
     {
        //first time setup of price info arra done and hence add key value observers for objects..
@@ -104,10 +88,18 @@ class LandingScreenVC: UIViewController {
         reloadData()
     }
     
+    //TODO: To be optimised--Simultaneous cell reloading and animation within its rate labels user expeience improvement.
     @objc func followUpPriceInfoAvailable(_ notification: Notification)
     {
-        DispatchQueue.main.async {
-            self.reloadVisibleData()
+//        self.reloadRow(3)
+//        return
+        var after = 0.0
+        for cell in self.tableViewBitcoinRateList.visibleCells {
+            let indexPath: IndexPath = self.tableViewBitcoinRateList.indexPath(for: cell)!
+                 DispatchQueue.main.asyncAfter(deadline: .now() + after) {
+                    after = after + 0.5
+                    self.reloadRow(indexPath.row)
+                 }
         }
     }
 
@@ -155,9 +147,7 @@ extension LandingScreenVC: UITableViewDataSource, UITableViewDelegate {
         let animation = viewModel.priceInfoBuyRateAnimationRequired(indexPath.row, oldBuyRateText: objPrice?.lastStoredBuyRate ?? "", oldSellRateText: objPrice?.lastStoredSellRate ?? "")
         cell.currencyLabel.text = viewModel.currencyLabelValue(indexPath.row)
         cell.accessibilityIdentifier = viewModel.currencyLabelValue(indexPath.row)
-        cell.buyRateLabel.text =  viewModel.buyRateLabelValue(indexPath.row)
-        cell.sellRateLabel.text = viewModel.sellRateLabelValue(indexPath.row)
-        cell.animateLabelColor(animation)
+        cell.animateLabelColor(animation, buyRateLabelValue: viewModel.buyRateLabelValue(indexPath.row), sellRateLabelValue: viewModel.sellRateLabelValue(indexPath.row))
         return cell
     }
     
