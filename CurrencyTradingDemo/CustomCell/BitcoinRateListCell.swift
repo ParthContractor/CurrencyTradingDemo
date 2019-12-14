@@ -17,7 +17,6 @@ class BitcoinRateListCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         decorateCurrencyLabel()
         decorateBuyRateLabel()
         decorateSellRateLabel()
@@ -63,5 +62,4 @@ class BitcoinRateListCell: UITableViewCell {
             self.sellRateLabel.text = sellRateLabelValue
         }
     }
-
 }

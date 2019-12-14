@@ -121,7 +121,6 @@ final class PriceInfoProvider {
                 }
                 else{
                     //new element found hence add it in array and notify..
-                    newObj.ID = self.bitcoinPriceInfoArray.count
                     self.bitcoinPriceInfoArray.append(newObj)
 //                    print("addition")
                 }

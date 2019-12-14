@@ -31,11 +31,8 @@ class CurrencyTradingDemoTests: XCTestCase {
         XCTAssertNotEqual(bitcoinPriceInfo1,bitcoinPriceInfo2)
         let bitcoinPriceInfo3 = BitcoinPriceInfo(currencyName: "AUD", buyRate: "232.09", sellRate: "245.09", symbol: "$")
         XCTAssertEqual(bitcoinPriceInfo2,bitcoinPriceInfo3)
-        XCTAssertNil(bitcoinPriceInfo2.ID)
         XCTAssertNil(bitcoinPriceInfo2.lastStoredSellRate)
         XCTAssertNil(bitcoinPriceInfo2.lastStoredBuyRate)
-        bitcoinPriceInfo2.ID = 3
-        XCTAssertNotNil(bitcoinPriceInfo2.ID)
     }
     
     func testArraySafeIndex() {
@@ -76,5 +73,20 @@ class CurrencyTradingDemoTests: XCTestCase {
         }
         waitForExpectations(timeout: 7)
     }
-
+    
+    func testCustomButton() {
+       let btn = CustomButton(type: .custom)
+       btn.isEnabled = false
+       XCTAssertNotEqual(btn.alpha,1.0)
+       btn.isEnabled = true
+       XCTAssertEqual(btn.alpha,1.0)
+    }
+    
+    func testCustomTextInputField() {
+        let textField = CustomTextInputField(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
+        textField.isActive = true
+        XCTAssertNotEqual(textField.layer.borderWidth,0.0)
+        textField.isActive = false
+        XCTAssertEqual(textField.layer.borderWidth,0.0)
+    }
 }

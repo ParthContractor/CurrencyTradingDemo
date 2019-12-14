@@ -114,8 +114,8 @@ extension LandingScreenVC: UITableViewDataSource, UITableViewDelegate {
          cell.tintColor = .white
          let image = UIImage(named:"IndicatorArrow")?.withRenderingMode(.alwaysTemplate)
              let disclosureImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
-        disclosureImageView.image = image
-        cell.accessoryView = disclosureImageView
+         disclosureImageView.image = image
+         cell.accessoryView = disclosureImageView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
