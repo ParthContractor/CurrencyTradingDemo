@@ -29,6 +29,7 @@
 		B23B434E23A369A4000F957E /* CurrencyOrderDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23B434D23A369A4000F957E /* CurrencyOrderDetailsViewModel.swift */; };
 		B23B435123A369CC000F957E /* CurrencyOrderDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23B434F23A369CC000F957E /* CurrencyOrderDetailsVC.swift */; };
 		B23B435223A369CC000F957E /* CurrencyOrderDetailsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B23B435023A369CC000F957E /* CurrencyOrderDetailsVC.xib */; };
+		B23B435623A4ABD6000F957E /* BuySellRateLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23B435523A4ABD6000F957E /* BuySellRateLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		B23B434D23A369A4000F957E /* CurrencyOrderDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyOrderDetailsViewModel.swift; sourceTree = "<group>"; };
 		B23B434F23A369CC000F957E /* CurrencyOrderDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyOrderDetailsVC.swift; sourceTree = "<group>"; };
 		B23B435023A369CC000F957E /* CurrencyOrderDetailsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurrencyOrderDetailsVC.xib; sourceTree = "<group>"; };
+		B23B435523A4ABD6000F957E /* BuySellRateLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuySellRateLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +170,7 @@
 				B23B433323A19E2E000F957E /* UIViewExtensions.swift */,
 				B23B434023A1C5DD000F957E /* DoubleExtension.swift */,
 				B23B434B23A24687000F957E /* ArrayExtension.swift */,
+				B23B435523A4ABD6000F957E /* BuySellRateLabel.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -364,6 +367,7 @@
 				B23B42FA23A0C4A1000F957E /* AppDelegate.swift in Sources */,
 				B23B433A23A1A2F1000F957E /* Constants.swift in Sources */,
 				B23B435123A369CC000F957E /* CurrencyOrderDetailsVC.swift in Sources */,
+				B23B435623A4ABD6000F957E /* BuySellRateLabel.swift in Sources */,
 				B23B434C23A24687000F957E /* ArrayExtension.swift in Sources */,
 				B23B434E23A369A4000F957E /* CurrencyOrderDetailsViewModel.swift in Sources */,
 			);

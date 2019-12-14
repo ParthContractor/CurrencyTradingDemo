@@ -40,7 +40,6 @@ class LandingScreenVC: UIViewController {
         //tableview cell registeration
         tableViewBitcoinRateList.register(UINib(nibName: "BitcoinRateListCell", bundle: nil), forCellReuseIdentifier: BitcoinRateListCell.cellIdentifier)
         tableViewBitcoinRateList.tableFooterView = UIView()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -83,11 +82,6 @@ class LandingScreenVC: UIViewController {
     // MARK: - Observers
     @objc func initialBitcoinPriceInfoAvailable(_ notification: Notification)
     {
-       //first time setup of price info arra done and hence add key value observers for objects..
-//        for objPriceInfo in PriceInfoProvider.shared.bitcoinPriceInfoArray {//make sure it is not being updated???
-//            objPriceInfo.addObserver(self, forKeyPath: "buyRate", options: [.new,.old], context: nil)
-//            objPriceInfo.addObserver(self, forKeyPath: "sellRate", options: [.new,.old], context: nil)
-//        }
         PriceInfoProvider.shared.sortByCurrencyName()
         reloadData()
     }
@@ -106,32 +100,6 @@ class LandingScreenVC: UIViewController {
                  }
         }
     }
-
-//    override func observeValue(forKeyPath keyPath: String?,
-//                               of object: Any?,
-//                               change: [NSKeyValueChangeKey : Any]?,
-//                               context: UnsafeMutableRawPointer?) {
-//        guard let change = change else {
-//            return
-//        }
-//        
-//        if let oldValue = change[.oldKey] {
-//            print("Old value \(oldValue)")
-//        }
-//        
-//        if let newValue = change[.newKey]  {
-//            print("New value \(newValue)")
-//            if object is BitcoinPriceInfo {
-//                let obj = object as! BitcoinPriceInfo
-//                print("object currency \(obj.currencyName)")
-//                print("object currency  id  \(obj.ID ?? 0)")
-//                //                if let id = obj.ID {
-//                //                    reloadRow(id)
-//                //                }
-//            }
-//        }
-//        
-//    }
 }
 
 extension LandingScreenVC: UITableViewDataSource, UITableViewDelegate {

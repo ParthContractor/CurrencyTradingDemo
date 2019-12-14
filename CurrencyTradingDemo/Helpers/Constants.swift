@@ -31,6 +31,7 @@ extension UIFont {
         static let currencyRatesListTitleFont = UIFont.systemFont(ofSize: 25)
         static let currencyRatesListDetailFont = UIFont.systemFont(ofSize: 20)
     }
+    static let tinyInformationFont = UIFont.systemFont(ofSize: 17)
 }
 
 extension UIColor {
@@ -40,5 +41,6 @@ extension UIColor {
         static let currencyNameDisplayColor = UIColor.lightText
         static let currencyBuyRateColor = UIColor.white
         static let currencySellRateColor = UIColor.white
+        static let selectedEnabledStateColor = UIColor.purple
     }
 }

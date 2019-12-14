@@ -11,8 +11,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CurrencyOrderDetailsVC" customModule="CurrencyTradingDemo" customModuleProvider="target">
             <connections>
+                <outlet property="btnBuyRatePanel" destination="mgL-gK-he0" id="w77-rW-YbV"/>
                 <outlet property="btnCancel" destination="WUh-Bw-Jk6" id="lhi-RN-9pN"/>
                 <outlet property="btnConfirm" destination="VWp-Eo-T0S" id="C6a-ip-8vB"/>
+                <outlet property="btnSellRatePanel" destination="ON8-xY-Wbw" id="fhv-tK-SkR"/>
                 <outlet property="lblBUY" destination="uZ5-r1-Odu" id="pg9-FB-iPG"/>
                 <outlet property="lblBuyRate" destination="efb-uD-OMi" id="aby-un-3bm"/>
                 <outlet property="lblSELL" destination="yW1-35-Sjz" id="yG1-Yj-mgr"/>
@@ -54,14 +56,14 @@
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="RGo-Wo-rcI" userLabel="Stack View SellBuy Labels">
                     <rect key="frame" x="0.0" y="44" width="414" height="110"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="232323.44" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2KY-o3-xaU" userLabel="lblSellRate">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="232323.44" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2KY-o3-xaU" userLabel="lblSellRate" customClass="BuySellRateLabel" customModule="CurrencyTradingDemo" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="207" height="110"/>
                             <color key="backgroundColor" systemColor="systemBrownColor" red="0.63529411759999999" green="0.51764705879999995" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="232322.56" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="efb-uD-OMi" userLabel="lblBuyRate">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="232322.56" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="efb-uD-OMi" userLabel="lblBuyRate" customClass="BuySellRateLabel" customModule="CurrencyTradingDemo" customModuleProvider="target">
                             <rect key="frame" x="207" y="0.0" width="207" height="110"/>
                             <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -79,6 +81,10 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ON8-xY-Wbw" userLabel="btnSellPanel">
                             <rect key="frame" x="0.0" y="0.0" width="207" height="110"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <state key="normal">
+                                <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
                             <connections>
                                 <action selector="btnSellPanelTapped:" destination="-1" eventType="touchUpInside" id="1PI-Un-6SA"/>
                             </connections>
@@ -86,6 +92,10 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mgL-gK-he0" userLabel="btnBuyPanel">
                             <rect key="frame" x="207" y="0.0" width="207" height="110"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <state key="normal">
+                                <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
                             <connections>
                                 <action selector="btnBuyPanelTapped:" destination="-1" eventType="touchUpInside" id="9PO-tO-Tmq"/>
                             </connections>

@@ -29,7 +29,6 @@ final class PriceInfoProvider {
 
     func fetchLatestPriceInfo() {
         self.getBitcoinPriceInfo(completion: { (success) -> () in
-            print("count is: \(self.bitcoinPriceInfoArray.count)")
             if self.firstTimeDataSetUp == false {
                 DispatchQueue.main.async {
                     NotificationCenter.default.post(name: .firstTimeBitcoinPriceInfo, object: nil)

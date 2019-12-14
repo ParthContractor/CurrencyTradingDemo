@@ -17,4 +17,20 @@ class CurrencyOrderDetailsViewModel {
     init(_ bitcoinPriceInfo: BitcoinPriceInfo) {
         self.objSelectedBitcoinPriceInfo = bitcoinPriceInfo
     }
+    
+    func priceInfoBuyRateAnimationRequired(oldBuyRateText: String) -> Bool {
+        var animationBuyRate = false
+        if oldBuyRateText != objSelectedBitcoinPriceInfo.buyRate {
+            animationBuyRate = true
+        }
+        return animationBuyRate
+    }
+    
+    func priceInfoSellRateAnimationRequired(oldSellRateText: String) -> Bool {
+        var animationSellRate = false
+        if oldSellRateText != objSelectedBitcoinPriceInfo.sellRate {
+            animationSellRate = true
+        }
+        return animationSellRate
+    }
 }

@@ -8,31 +8,100 @@
 
 import UIKit
 
+enum Market {
+    case Buy
+    case Sell
+}
 class CurrencyOrderDetailsVC: UIViewController {
     
     let viewModel: CurrencyOrderDetailsViewModel
     
-    @IBOutlet var lblBUY: UILabel!
-    @IBOutlet var lblSELL: UILabel!
+    var marketSelected: Market = .Sell {
+        didSet {
+            if marketSelected == .Sell {
+                navigationItem.rightBarButtonItem = UIBarButtonItem(title: "SELL-Market", style: .plain, target: self, action: nil)
+            }
+            else{
+                navigationItem.rightBarButtonItem = UIBarButtonItem(title: "BUY-Market", style: .plain, target: self, action: nil)
+            }
+            navigationItem.rightBarButtonItem?.isEnabled = false
+        }
+    }
     
+    @IBOutlet var lblBUY: UILabel!{
+        didSet {
+            lblBUY.font = UIFont.tinyInformationFont
+            lblBUY.textColor = .white
+        }
+    }
+    @IBOutlet var lblSELL: UILabel!{
+        didSet {
+            lblSELL.font = UIFont.tinyInformationFont
+            lblSELL.textColor = .white
+        }
+    }
+    @IBOutlet var btnBuyRatePanel: UIButton!{
+        didSet{
+            btnBuyRatePanel.isSelected = false
+            btnBuyRatePanel.backgroundColor = .clear
+        }
+    }
+    @IBOutlet var btnSellRatePanel: UIButton!{
+        didSet{
+            btnSellRatePanel.isSelected = true
+            btnSellRatePanel.backgroundColor = .clear
+        }
+    }
+
     @IBOutlet var btnCancel: UIButton!
     @IBOutlet var btnConfirm: UIButton!
     @IBOutlet var stackViewBottomOrderButtons: UIStackView!
-    @IBOutlet var lblBuyRate: UILabel!
-    @IBOutlet var lblSellRate: UILabel!
-    @IBOutlet var lblSpreadCalculation: UILabel!
+    @IBOutlet var lblBuyRate: BuySellRateLabel!
+    @IBOutlet var lblSellRate: BuySellRateLabel!
+    @IBOutlet var lblSpreadCalculation: UILabel!{
+        didSet {
+            lblSpreadCalculation.font = UIFont.tinyInformationFont
+            lblSpreadCalculation.textColor = .white
+        }
+    }
         
     private var strBuyRate: String! {
         didSet {
-            lblBuyRate.text = strBuyRate
-            spreadCalculation()
+            let animationRequired = viewModel.priceInfoBuyRateAnimationRequired(oldBuyRateText: lblBuyRate.lastStoredText)
+            if animationRequired == true {
+                UIView.transition(with: lblBuyRate, duration: 0.8, options: .transitionCrossDissolve, animations: {
+                    self.lblBuyRate.customText = self.strBuyRate
+                    self.lblBuyRate.textColor = UIColor.green
+                }, completion: { _ in
+                    self.lblBuyRate.textColor = .white
+                    self.lblBuyRate.lastStoredText = self.strBuyRate
+                    self.spreadCalculation()
+                })
+            }
+            else{
+                lblBuyRate.customText = strBuyRate
+                spreadCalculation()
+            }
         }
     }
 
     private var strSellRate: String! {
         didSet {
-            lblSellRate.text = strSellRate
-            spreadCalculation()
+            let animationRequired = viewModel.priceInfoSellRateAnimationRequired(oldSellRateText: lblSellRate.lastStoredText)
+            if animationRequired == true {
+                UIView.transition(with: lblSellRate, duration: 0.8, options: .transitionCrossDissolve, animations: {
+                    self.lblSellRate.customText = self.strSellRate
+                    self.lblSellRate.textColor = UIColor.green
+                }, completion: { _ in
+                    self.lblSellRate.textColor = .white
+                    self.lblSellRate.lastStoredText = self.strSellRate
+                    self.spreadCalculation()
+                })
+            }
+            else{
+                lblSellRate.customText = strSellRate
+                spreadCalculation()
+            }
         }
     }
     
@@ -48,9 +117,7 @@ class CurrencyOrderDetailsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        stackViewBottomOrderButtons.setCustomSpacing(10.0, after: btnCancel)
-        navigationItem.setHidesBackButton(true, animated:true);
-//        initialSetUp()
+        initialSetUp()
         addObservers()
         setUpData()
     }
@@ -69,22 +136,51 @@ class CurrencyOrderDetailsVC: UIViewController {
     }
     
     @IBAction func btnConfirmTapped(_ sender: UIButton) {
-        
+
     }
     
     @IBAction func btnSellPanelTapped(_ sender: UIButton) {
-        
+        guard marketSelected == .Buy else {
+            return
+        }
+        sellPanelSelectedState()
     }
     
     @IBAction func btnBuyPanelTapped(_ sender: UIButton) {
-        
+        guard marketSelected == .Sell else {
+            return
+        }
+        buyPanelSelectedState()
     }
     
     // MARK: - Helpers
+    private func initialSetUp(){
+           stackViewBottomOrderButtons.setCustomSpacing(10.0, after: btnCancel)
+           navigationItem.setHidesBackButton(true, animated:true)
+           sellPanelSelectedState()
+    }
+    
     private func setUpData(){
         strBuyRate = viewModel.objSelectedBitcoinPriceInfo.buyRate
         strSellRate = viewModel.objSelectedBitcoinPriceInfo.sellRate
         title = viewModel.navigationTitle
+        marketSelected = .Sell
+    }
+    
+    private func sellPanelSelectedState(){
+        marketSelected = .Sell
+        btnBuyRatePanel.isSelected = false
+        btnSellRatePanel.isSelected = true
+        lblBuyRate.backgroundColor = .clear
+        lblSellRate.backgroundColor = UIColor.ThemeColor.selectedEnabledStateColor
+    }
+    
+    private func buyPanelSelectedState(){
+        marketSelected = .Buy
+        btnBuyRatePanel.isSelected = true
+        btnSellRatePanel.isSelected = false
+        lblBuyRate.backgroundColor = UIColor.ThemeColor.selectedEnabledStateColor
+        lblSellRate.backgroundColor = .clear
     }
     
     private func spreadCalculation(){
