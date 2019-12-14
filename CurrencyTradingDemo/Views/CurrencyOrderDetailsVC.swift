@@ -25,6 +25,7 @@ class CurrencyOrderDetailsVC: UIViewController {
                 navigationItem.rightBarButtonItem = UIBarButtonItem(title: "BUY-Market", style: .plain, target: self, action: nil)
             }
             navigationItem.rightBarButtonItem?.isEnabled = false
+            autoSetupAmountTextField(textFieldUnits.text)
         }
     }
     
@@ -112,6 +113,7 @@ class CurrencyOrderDetailsVC: UIViewController {
                 lblBuyRate.customText = strBuyRate
                 spreadCalculation()
             }
+            autoSetupAmountTextField(textFieldUnits.text)
         }
     }
 
@@ -132,6 +134,7 @@ class CurrencyOrderDetailsVC: UIViewController {
                 lblSellRate.customText = strSellRate
                 spreadCalculation()
             }
+            autoSetupAmountTextField(textFieldUnits.text)
         }
     }
     
@@ -184,19 +187,27 @@ class CurrencyOrderDetailsVC: UIViewController {
     }
     
     @objc func textFieldDidChange(textField: UITextField){
-        print("textFieldUnits is \(String(describing: textFieldUnits.text))")
-        print("textFieldAmount is \(String(describing: textFieldAmount.text))")
+        if textField.tag == 1 {
+            autoSetupAmountTextField(textFieldUnits.text)
+        }
+        else{
+            autoSetupUnitsTextField(textFieldAmount.text)
+        }
         btnConfirmStateSetup()
     }
     
     // MARK: - Helpers
     private func initialSetUp(){
-           stackViewBottomOrderButtons.setCustomSpacing(10.0, after: btnCancel)
-           navigationItem.setHidesBackButton(true, animated:true)
-           sellPanelSelectedState()
-           hideKeyboardWhenTappedAround()
-           textFieldAmount.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
-           textFieldUnits.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
+        stackViewBottomOrderButtons.setCustomSpacing(10.0, after: btnCancel)
+        navigationItem.setHidesBackButton(true, animated:true)
+        sellPanelSelectedState()
+        hideKeyboardWhenTappedAround()
+        textFieldAmount.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
+        textFieldUnits.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
+        textFieldAmount.delegate = self
+        textFieldAmount.keyboardType = .decimalPad
+        textFieldUnits.delegate = self
+        textFieldUnits.keyboardType = .decimalPad
     }
     
     private func setUpData(){
@@ -206,6 +217,44 @@ class CurrencyOrderDetailsVC: UIViewController {
         marketSelected = .Sell
         lblAmount.text = viewModel.lblAmountValue
     }
+    
+    private func autoSetupAmountTextField(_ strUnits: String?){
+        guard let numOfUnitsString = strUnits, numOfUnitsString.count != 0  else {
+            textFieldAmount.text = ""
+            return
+        }
+        let doubleUnits = Double(numOfUnitsString)
+        var doubleRate: Double!
+        if marketSelected == .Buy {
+            doubleRate = Double(strBuyRate)
+        }
+        else{
+            doubleRate = Double(strSellRate)
+        }
+        if let units = doubleUnits, let rate = doubleRate {
+            let amountCalculated = units * rate
+            textFieldAmount.text = amountCalculated.roundedStringValue(to: 2)
+        }
+    }
+    
+    private func autoSetupUnitsTextField(_ strAmount: String?){
+           guard let amountString = strAmount, amountString.count != 0  else {
+               textFieldUnits.text = ""
+               return
+           }
+           let doubleAmount = Double(amountString)
+           var doubleRate: Double!
+           if marketSelected == .Buy {
+               doubleRate = Double(strBuyRate)
+           }
+           else{
+               doubleRate = Double(strSellRate)
+           }
+           if let amount = doubleAmount, let rate = doubleRate {
+               let unitsCalculated = amount / rate
+               textFieldUnits.text = unitsCalculated.roundedStringValue(to: 2)
+           }
+       }
     
     private func sellPanelSelectedState(){
         marketSelected = .Sell
@@ -257,12 +306,7 @@ class CurrencyOrderDetailsVC: UIViewController {
             return
         }
         
-        if let oldValue = change[.oldKey] {
-            print("Old value \(oldValue)")
-        }
-        
-        if let newValue = change[.newKey]  {
-            print("New value \(newValue)")
+        if let _ = change[.newKey]  {
             if object is BitcoinPriceInfo {
                 let obj = object as! BitcoinPriceInfo
                 if let path = keyPath, path == Constants.buyRateKeyPath {
@@ -271,10 +315,16 @@ class CurrencyOrderDetailsVC: UIViewController {
                 else if let path = keyPath, path == Constants.sellRateKeyPath {
                     strSellRate = obj.sellRate
                 }
-                print("object currency \(obj.currencyName)")
-                print("object currency  id  \(obj.ID ?? 0)")
             }
         }
     }
 
+}
+
+extension CurrencyOrderDetailsVC: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        return isNumberValidWithTwoDecimalPoints(textField.text, range: range, replacementString: string)
+    }
+    
 }

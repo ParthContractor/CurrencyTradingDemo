@@ -148,7 +148,7 @@
                     <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rTR-Jj-Ilk" customClass="CustomTextInputField" customModule="CurrencyTradingDemo" customModuleProvider="target">
+                <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rTR-Jj-Ilk" customClass="CustomTextInputField" customModule="CurrencyTradingDemo" customModuleProvider="target">
                     <rect key="frame" x="10" y="237" width="209" height="34"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="209" id="Mje-ej-B0b"/>
@@ -157,7 +157,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="omm-K4-OfT" customClass="CustomTextInputField" customModule="CurrencyTradingDemo" customModuleProvider="target">
+                <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="omm-K4-OfT" customClass="CustomTextInputField" customModule="CurrencyTradingDemo" customModuleProvider="target">
                     <rect key="frame" x="10" y="316.5" width="209" height="34"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="34" id="49x-oX-f7e"/>

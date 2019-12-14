@@ -23,6 +23,25 @@ extension UIViewController {
           view.endEditing(true)
     }
     
+    func isNumberValidWithTwoDecimalPoints(_ textString: String?, range: NSRange, replacementString: String) -> Bool {
+        guard let oldText = textString, let r = Range(range, in: oldText) else {
+            return true
+        }
+
+        let newText = oldText.replacingCharacters(in: r, with: replacementString)
+        let isNumeric = newText.isEmpty || (Double(newText) != nil)
+        let numberOfDots = newText.components(separatedBy: ".").count - 1
+
+        let numberOfDecimalDigits: Int
+        if let dotIndex = newText.firstIndex(of: ".") {
+            numberOfDecimalDigits = newText.distance(from: dotIndex, to: newText.endIndex) - 1
+        } else {
+            numberOfDecimalDigits = 0
+        }
+
+        return isNumeric && numberOfDots <= 1 && numberOfDecimalDigits <= 2
+    }
+
     func presentAlert(withTitle title: String, message : String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
