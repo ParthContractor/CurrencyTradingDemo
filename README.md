@@ -39,7 +39,7 @@ This will return prices in JSON format. For more information see the simple API 
   * Readme/Documentation and video recording: 0.5 hour
 * User Interface and Application Demo link
   * Link to download video(expires in 7 days)
-  * Youtube link:
+  * Youtube link: https://youtu.be/SW7FxH58vXA
 * Limitations/known issues
   * LandingScreen::Minor user expereince concern in simultaneous tableview cells loading including animation of labels --> Here, List of bitcoin rates across of different countries shown and real time update happens based on API polling
 * Future scalability/requirements/features possibility/Scope of improvements
