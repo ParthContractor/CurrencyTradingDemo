@@ -28,7 +28,8 @@ This will return prices in JSON format. For more information see the simple API 
 * Code coverage: 43.2 %
 * Assumptions
   * No CACHING OR LOCAL STORAGE required
-  * Numbers with Two decimal points supported through out application(buy rate, sell rate, units, amount etc)
+  * Initial alphabatical sorting on client side while displaying bitcoin rates in various currency in tableview.
+  * Numbers with two decimal points supported through out application(buy rate, sell rate, units, amount etc)
 * Approximate time estimation and efforts involved for this application development
   * Application architecture, basic utility and infra setup: 2 hours
   * Application reusable(and independent) components/classes/methods and basic utility setup: 2 hours
