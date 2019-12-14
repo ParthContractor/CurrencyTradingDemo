@@ -13,6 +13,10 @@ class CurrencyOrderDetailsViewModel {
     var navigationTitle: String {
            return "Bitcoin Price" + "::" + self.objSelectedBitcoinPriceInfo.currencyName
     }
+    
+    var lblAmountValue: String {
+        return "Amount" + " (" + objSelectedBitcoinPriceInfo.symbol + ")"
+    }
 
     init(_ bitcoinPriceInfo: BitcoinPriceInfo) {
         self.objSelectedBitcoinPriceInfo = bitcoinPriceInfo

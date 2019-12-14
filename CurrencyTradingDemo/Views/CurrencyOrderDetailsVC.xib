@@ -15,12 +15,16 @@
                 <outlet property="btnCancel" destination="WUh-Bw-Jk6" id="lhi-RN-9pN"/>
                 <outlet property="btnConfirm" destination="VWp-Eo-T0S" id="C6a-ip-8vB"/>
                 <outlet property="btnSellRatePanel" destination="ON8-xY-Wbw" id="fhv-tK-SkR"/>
+                <outlet property="lblAmount" destination="qw7-tq-GWS" id="Hiy-bI-2do"/>
                 <outlet property="lblBUY" destination="uZ5-r1-Odu" id="pg9-FB-iPG"/>
                 <outlet property="lblBuyRate" destination="efb-uD-OMi" id="aby-un-3bm"/>
                 <outlet property="lblSELL" destination="yW1-35-Sjz" id="yG1-Yj-mgr"/>
                 <outlet property="lblSellRate" destination="2KY-o3-xaU" id="E2R-4m-ngL"/>
                 <outlet property="lblSpreadCalculation" destination="CCo-io-STT" id="zuT-Pj-cyz"/>
+                <outlet property="lblUnits" destination="ETd-qz-Ybi" id="ybm-XY-Cwq"/>
                 <outlet property="stackViewBottomOrderButtons" destination="PNR-pZ-Kdc" id="BQG-Lc-4B6"/>
+                <outlet property="textFieldAmount" destination="omm-K4-OfT" id="wYd-iX-srU"/>
+                <outlet property="textFieldUnits" destination="rTR-Jj-Ilk" id="QMz-DY-Ci1"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -40,7 +44,7 @@
                                 <action selector="btnCancelTapped:" destination="-1" eventType="touchUpInside" id="Xqk-BY-fIl"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VWp-Eo-T0S" userLabel="btnConfirm">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VWp-Eo-T0S" userLabel="btnConfirm" customClass="CustomButton" customModule="CurrencyTradingDemo" customModuleProvider="target">
                             <rect key="frame" x="201" y="0.0" width="193" height="45"/>
                             <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <state key="normal" title="Confirm"/>
@@ -56,14 +60,14 @@
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="RGo-Wo-rcI" userLabel="Stack View SellBuy Labels">
                     <rect key="frame" x="0.0" y="44" width="414" height="110"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="232323.44" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2KY-o3-xaU" userLabel="lblSellRate" customClass="BuySellRateLabel" customModule="CurrencyTradingDemo" customModuleProvider="target">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2KY-o3-xaU" userLabel="lblSellRate" customClass="BuySellRateLabel" customModule="CurrencyTradingDemo" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="207" height="110"/>
                             <color key="backgroundColor" systemColor="systemBrownColor" red="0.63529411759999999" green="0.51764705879999995" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="232322.56" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="efb-uD-OMi" userLabel="lblBuyRate" customClass="BuySellRateLabel" customModule="CurrencyTradingDemo" customModuleProvider="target">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="efb-uD-OMi" userLabel="lblBuyRate" customClass="BuySellRateLabel" customModule="CurrencyTradingDemo" customModuleProvider="target">
                             <rect key="frame" x="207" y="0.0" width="207" height="110"/>
                             <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -125,13 +129,51 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SPREAD" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CCo-io-STT">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CCo-io-STT">
                     <rect key="frame" x="0.0" y="154" width="414" height="37"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="37" id="JIR-Vm-Wjs"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Units" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ETd-qz-Ybi" userLabel="Units">
+                    <rect key="frame" x="10" y="206" width="120" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="DgK-dv-Xcw"/>
+                        <constraint firstAttribute="width" constant="120" id="hf6-IA-7pS"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rTR-Jj-Ilk" customClass="CustomTextInputField" customModule="CurrencyTradingDemo" customModuleProvider="target">
+                    <rect key="frame" x="10" y="237" width="209" height="34"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="209" id="Mje-ej-B0b"/>
+                        <constraint firstAttribute="height" constant="34" id="gUj-Lz-0az"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="omm-K4-OfT" customClass="CustomTextInputField" customModule="CurrencyTradingDemo" customModuleProvider="target">
+                    <rect key="frame" x="10" y="316.5" width="209" height="34"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="34" id="49x-oX-f7e"/>
+                        <constraint firstAttribute="width" constant="209" id="u61-cH-FQR"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qw7-tq-GWS" userLabel="Amount">
+                    <rect key="frame" x="10" y="286" width="120" height="20.5"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20.5" id="Nb3-NR-TEB"/>
+                        <constraint firstAttribute="width" constant="120" id="o2W-yw-4v3"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
@@ -141,15 +183,23 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="PNR-pZ-Kdc" secondAttribute="trailing" constant="10" id="CjB-7L-0IV"/>
                 <constraint firstItem="CCo-io-STT" firstAttribute="top" secondItem="RGo-Wo-rcI" secondAttribute="bottom" id="Dng-vf-xCr"/>
                 <constraint firstItem="CCo-io-STT" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="GTd-8U-dDv"/>
+                <constraint firstItem="ETd-qz-Ybi" firstAttribute="top" secondItem="CCo-io-STT" secondAttribute="bottom" constant="15" id="GuD-6W-CF4"/>
                 <constraint firstItem="yW1-35-Sjz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="L7Q-Fn-aeT"/>
+                <constraint firstItem="omm-K4-OfT" firstAttribute="top" secondItem="qw7-tq-GWS" secondAttribute="bottom" constant="10" id="PXG-1Z-Kdm"/>
                 <constraint firstItem="CCo-io-STT" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="R1b-8J-i4X"/>
+                <constraint firstItem="rTR-Jj-Ilk" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="RRC-Q9-DWl"/>
+                <constraint firstItem="qw7-tq-GWS" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="UHs-ln-qlK"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="PNR-pZ-Kdc" secondAttribute="bottom" id="VDy-23-z6n"/>
                 <constraint firstItem="uZ5-r1-Odu" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="XbH-5h-FF9"/>
                 <constraint firstItem="RGo-Wo-rcI" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="cEI-rw-9DP"/>
                 <constraint firstItem="RGo-Wo-rcI" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="h1s-7T-1WA"/>
                 <constraint firstItem="RB1-xA-4KF" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="nRl-Lq-zph"/>
+                <constraint firstItem="omm-K4-OfT" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="o2w-yf-tvz"/>
+                <constraint firstItem="ETd-qz-Ybi" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="qqa-zq-eDM"/>
                 <constraint firstItem="yW1-35-Sjz" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="rND-7e-2uw"/>
                 <constraint firstItem="RGo-Wo-rcI" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="s8v-d2-fi9"/>
+                <constraint firstItem="qw7-tq-GWS" firstAttribute="top" secondItem="rTR-Jj-Ilk" secondAttribute="bottom" constant="15" id="w3w-Fc-hhO"/>
+                <constraint firstItem="rTR-Jj-Ilk" firstAttribute="top" secondItem="ETd-qz-Ybi" secondAttribute="bottom" constant="10" id="wxl-ft-zhY"/>
                 <constraint firstItem="RB1-xA-4KF" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="ypP-wx-MEx"/>
                 <constraint firstItem="RB1-xA-4KF" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="z3t-o2-0L6"/>
                 <constraint firstItem="PNR-pZ-Kdc" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="zAL-3w-O3P"/>

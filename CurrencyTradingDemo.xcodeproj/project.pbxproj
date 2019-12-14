@@ -30,6 +30,8 @@
 		B23B435123A369CC000F957E /* CurrencyOrderDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23B434F23A369CC000F957E /* CurrencyOrderDetailsVC.swift */; };
 		B23B435223A369CC000F957E /* CurrencyOrderDetailsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B23B435023A369CC000F957E /* CurrencyOrderDetailsVC.xib */; };
 		B23B435623A4ABD6000F957E /* BuySellRateLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23B435523A4ABD6000F957E /* BuySellRateLabel.swift */; };
+		B23B435823A4C322000F957E /* CustomTextInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23B435723A4C322000F957E /* CustomTextInputField.swift */; };
+		B23B435A23A4D0FF000F957E /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23B435923A4D0FF000F957E /* CustomButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +81,8 @@
 		B23B434F23A369CC000F957E /* CurrencyOrderDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyOrderDetailsVC.swift; sourceTree = "<group>"; };
 		B23B435023A369CC000F957E /* CurrencyOrderDetailsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurrencyOrderDetailsVC.xib; sourceTree = "<group>"; };
 		B23B435523A4ABD6000F957E /* BuySellRateLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuySellRateLabel.swift; sourceTree = "<group>"; };
+		B23B435723A4C322000F957E /* CustomTextInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextInputField.swift; sourceTree = "<group>"; };
+		B23B435923A4D0FF000F957E /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +175,8 @@
 				B23B434023A1C5DD000F957E /* DoubleExtension.swift */,
 				B23B434B23A24687000F957E /* ArrayExtension.swift */,
 				B23B435523A4ABD6000F957E /* BuySellRateLabel.swift */,
+				B23B435723A4C322000F957E /* CustomTextInputField.swift */,
+				B23B435923A4D0FF000F957E /* CustomButton.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -356,6 +362,7 @@
 			files = (
 				B23B432C23A0FFB0000F957E /* LandingScreenViewModel.swift in Sources */,
 				B23B433823A1A0C1000F957E /* PriceInfoProvider.swift in Sources */,
+				B23B435A23A4D0FF000F957E /* CustomButton.swift in Sources */,
 				B23B433123A19E1E000F957E /* APIUtility.swift in Sources */,
 				B23B434123A1C5DD000F957E /* DoubleExtension.swift in Sources */,
 				B23B433D23A1A770000F957E /* JSONModels.swift in Sources */,
@@ -363,6 +370,7 @@
 				B23B433423A19E2E000F957E /* UIViewControllerExtensions.swift in Sources */,
 				B23B432D23A0FFB0000F957E /* LandingScreenVC.swift in Sources */,
 				B23B434923A23FA3000F957E /* BitcoinRateListCell.swift in Sources */,
+				B23B435823A4C322000F957E /* CustomTextInputField.swift in Sources */,
 				B23B433523A19E2E000F957E /* UIViewExtensions.swift in Sources */,
 				B23B42FA23A0C4A1000F957E /* AppDelegate.swift in Sources */,
 				B23B433A23A1A2F1000F957E /* Constants.swift in Sources */,

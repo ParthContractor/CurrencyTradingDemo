@@ -40,21 +40,51 @@ class CurrencyOrderDetailsVC: UIViewController {
             lblSELL.textColor = .white
         }
     }
+    @IBOutlet var lblUnits: UILabel!{
+        didSet {
+            lblUnits.font = UIFont.tinyInformationFont
+            lblUnits.textColor = UIColor.ThemeColor.selectedEnabledStateColor
+        }
+    }
+    @IBOutlet var textFieldUnits: CustomTextInputField!{
+        didSet {
+            textFieldUnits.isActive = false
+        }
+    }
+    @IBOutlet var textFieldAmount: CustomTextInputField!{
+        didSet {
+            textFieldAmount.isActive = false
+        }
+    }
+    @IBOutlet var lblAmount: UILabel!{
+        didSet {
+            lblAmount.font = UIFont.tinyInformationFont
+            lblAmount.textColor = UIColor.ThemeColor.selectedEnabledStateColor
+        }
+    }
     @IBOutlet var btnBuyRatePanel: UIButton!{
         didSet{
             btnBuyRatePanel.isSelected = false
             btnBuyRatePanel.backgroundColor = .clear
+            btnBuyRatePanel.layer.borderColor = UIColor.lightText.cgColor
+            btnBuyRatePanel.layer.borderWidth = 1
         }
     }
     @IBOutlet var btnSellRatePanel: UIButton!{
         didSet{
             btnSellRatePanel.isSelected = true
             btnSellRatePanel.backgroundColor = .clear
+            btnSellRatePanel.layer.borderColor = UIColor.lightText.cgColor
+            btnSellRatePanel.layer.borderWidth = 1
         }
     }
 
     @IBOutlet var btnCancel: UIButton!
-    @IBOutlet var btnConfirm: UIButton!
+    @IBOutlet var btnConfirm: CustomButton!{
+        didSet{
+            btnConfirm.isEnabled = false
+        }
+    }
     @IBOutlet var stackViewBottomOrderButtons: UIStackView!
     @IBOutlet var lblBuyRate: BuySellRateLabel!
     @IBOutlet var lblSellRate: BuySellRateLabel!
@@ -69,7 +99,7 @@ class CurrencyOrderDetailsVC: UIViewController {
         didSet {
             let animationRequired = viewModel.priceInfoBuyRateAnimationRequired(oldBuyRateText: lblBuyRate.lastStoredText)
             if animationRequired == true {
-                UIView.transition(with: lblBuyRate, duration: 0.8, options: .transitionCrossDissolve, animations: {
+                UIView.transition(with: lblBuyRate, duration: 1.0, options: .transitionCrossDissolve, animations: {
                     self.lblBuyRate.customText = self.strBuyRate
                     self.lblBuyRate.textColor = UIColor.green
                 }, completion: { _ in
@@ -89,7 +119,7 @@ class CurrencyOrderDetailsVC: UIViewController {
         didSet {
             let animationRequired = viewModel.priceInfoSellRateAnimationRequired(oldSellRateText: lblSellRate.lastStoredText)
             if animationRequired == true {
-                UIView.transition(with: lblSellRate, duration: 0.8, options: .transitionCrossDissolve, animations: {
+                UIView.transition(with: lblSellRate, duration: 1.0, options: .transitionCrossDissolve, animations: {
                     self.lblSellRate.customText = self.strSellRate
                     self.lblSellRate.textColor = UIColor.green
                 }, completion: { _ in
@@ -132,11 +162,11 @@ class CurrencyOrderDetailsVC: UIViewController {
 
     // MARK: - Actions/Events
     @IBAction func btnCancelTapped(_ sender: UIButton) {
-        
+        navigationController?.popViewController(animated: true)
     }
     
     @IBAction func btnConfirmTapped(_ sender: UIButton) {
-
+        presentAlert(withTitle: "Bitcoin Trading", message: "Order feature needs to be implemented..")
     }
     
     @IBAction func btnSellPanelTapped(_ sender: UIButton) {
@@ -153,11 +183,20 @@ class CurrencyOrderDetailsVC: UIViewController {
         buyPanelSelectedState()
     }
     
+    @objc func textFieldDidChange(textField: UITextField){
+        print("textFieldUnits is \(String(describing: textFieldUnits.text))")
+        print("textFieldAmount is \(String(describing: textFieldAmount.text))")
+        btnConfirmStateSetup()
+    }
+    
     // MARK: - Helpers
     private func initialSetUp(){
            stackViewBottomOrderButtons.setCustomSpacing(10.0, after: btnCancel)
            navigationItem.setHidesBackButton(true, animated:true)
            sellPanelSelectedState()
+           hideKeyboardWhenTappedAround()
+           textFieldAmount.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
+           textFieldUnits.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
     }
     
     private func setUpData(){
@@ -165,6 +204,7 @@ class CurrencyOrderDetailsVC: UIViewController {
         strSellRate = viewModel.objSelectedBitcoinPriceInfo.sellRate
         title = viewModel.navigationTitle
         marketSelected = .Sell
+        lblAmount.text = viewModel.lblAmountValue
     }
     
     private func sellPanelSelectedState(){
@@ -181,6 +221,15 @@ class CurrencyOrderDetailsVC: UIViewController {
         btnSellRatePanel.isSelected = false
         lblBuyRate.backgroundColor = UIColor.ThemeColor.selectedEnabledStateColor
         lblSellRate.backgroundColor = .clear
+    }
+    
+    private func btnConfirmStateSetup(){
+        if textFieldUnits.text?.trimmingCharacters(in: .whitespacesAndNewlines).count != 0 ||  textFieldAmount.text?.trimmingCharacters(in: .whitespacesAndNewlines).count != 0 {
+            btnConfirm.isEnabled = true
+        }
+        else{
+            btnConfirm.isEnabled = false
+        }
     }
     
     private func spreadCalculation(){
