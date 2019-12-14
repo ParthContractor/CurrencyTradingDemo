@@ -13,6 +13,8 @@ let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
 struct Constants {
     static let latestPriceInfoPollingPeriod = 15
+    static let buyRateKeyPath = "buyRate"
+    static let sellRateKeyPath = "sellRate"
 
     struct APIConstants {
            static let bitcoinPriceInfoURL = "https://blockchain.info/ticker"

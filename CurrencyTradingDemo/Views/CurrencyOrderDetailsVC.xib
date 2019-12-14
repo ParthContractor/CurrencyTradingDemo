@@ -5,11 +5,20 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CurrencyOrderDetailsVC" customModule="CurrencyTradingDemo" customModuleProvider="target">
             <connections>
+                <outlet property="btnCancel" destination="WUh-Bw-Jk6" id="lhi-RN-9pN"/>
+                <outlet property="btnConfirm" destination="VWp-Eo-T0S" id="C6a-ip-8vB"/>
+                <outlet property="lblBUY" destination="uZ5-r1-Odu" id="pg9-FB-iPG"/>
+                <outlet property="lblBuyRate" destination="efb-uD-OMi" id="aby-un-3bm"/>
+                <outlet property="lblSELL" destination="yW1-35-Sjz" id="yG1-Yj-mgr"/>
+                <outlet property="lblSellRate" destination="2KY-o3-xaU" id="E2R-4m-ngL"/>
+                <outlet property="lblSpreadCalculation" destination="CCo-io-STT" id="zuT-Pj-cyz"/>
+                <outlet property="stackViewBottomOrderButtons" destination="PNR-pZ-Kdc" id="BQG-Lc-4B6"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -17,7 +26,125 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="414" height="626"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="PNR-pZ-Kdc">
+                    <rect key="frame" x="10" y="581" width="394" height="45"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WUh-Bw-Jk6" userLabel="btnCancel">
+                            <rect key="frame" x="0.0" y="0.0" width="193" height="45"/>
+                            <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <state key="normal" title="Cancel"/>
+                            <connections>
+                                <action selector="btnCancelTapped:" destination="-1" eventType="touchUpInside" id="Xqk-BY-fIl"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VWp-Eo-T0S" userLabel="btnConfirm">
+                            <rect key="frame" x="201" y="0.0" width="193" height="45"/>
+                            <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <state key="normal" title="Confirm"/>
+                            <connections>
+                                <action selector="btnConfirmTapped:" destination="-1" eventType="touchUpInside" id="iWC-QA-GN7"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="I0l-oT-nQv"/>
+                    </constraints>
+                </stackView>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="RGo-Wo-rcI" userLabel="Stack View SellBuy Labels">
+                    <rect key="frame" x="0.0" y="44" width="414" height="110"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="232323.44" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2KY-o3-xaU" userLabel="lblSellRate">
+                            <rect key="frame" x="0.0" y="0.0" width="207" height="110"/>
+                            <color key="backgroundColor" systemColor="systemBrownColor" red="0.63529411759999999" green="0.51764705879999995" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="232322.56" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="efb-uD-OMi" userLabel="lblBuyRate">
+                            <rect key="frame" x="207" y="0.0" width="207" height="110"/>
+                            <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="110" id="mjw-1H-Uro"/>
+                    </constraints>
+                </stackView>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="RB1-xA-4KF" userLabel="Stack View SellBuy OverlayButtons">
+                    <rect key="frame" x="0.0" y="44" width="414" height="110"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ON8-xY-Wbw" userLabel="btnSellPanel">
+                            <rect key="frame" x="0.0" y="0.0" width="207" height="110"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="btnSellPanelTapped:" destination="-1" eventType="touchUpInside" id="1PI-Un-6SA"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mgL-gK-he0" userLabel="btnBuyPanel">
+                            <rect key="frame" x="207" y="0.0" width="207" height="110"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="btnBuyPanelTapped:" destination="-1" eventType="touchUpInside" id="9PO-tO-Tmq"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="110" id="nTi-iC-gy5"/>
+                    </constraints>
+                </stackView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SELL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yW1-35-Sjz" userLabel="SELL">
+                    <rect key="frame" x="0.0" y="44" width="39" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="39" id="AfF-bO-liQ"/>
+                        <constraint firstAttribute="height" constant="21" id="lxQ-Fs-3Fr"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BUY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uZ5-r1-Odu" userLabel="BUY">
+                    <rect key="frame" x="375" y="44" width="39" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="4nk-hk-N7t"/>
+                        <constraint firstAttribute="width" constant="39" id="AFa-Hs-fgQ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SPREAD" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CCo-io-STT">
+                    <rect key="frame" x="0.0" y="154" width="414" height="37"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="37" id="JIR-Vm-Wjs"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="uZ5-r1-Odu" secondAttribute="trailing" id="0ES-ra-LZv"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="PNR-pZ-Kdc" secondAttribute="trailing" constant="10" id="CjB-7L-0IV"/>
+                <constraint firstItem="CCo-io-STT" firstAttribute="top" secondItem="RGo-Wo-rcI" secondAttribute="bottom" id="Dng-vf-xCr"/>
+                <constraint firstItem="CCo-io-STT" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="GTd-8U-dDv"/>
+                <constraint firstItem="yW1-35-Sjz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="L7Q-Fn-aeT"/>
+                <constraint firstItem="CCo-io-STT" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="R1b-8J-i4X"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="PNR-pZ-Kdc" secondAttribute="bottom" id="VDy-23-z6n"/>
+                <constraint firstItem="uZ5-r1-Odu" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="XbH-5h-FF9"/>
+                <constraint firstItem="RGo-Wo-rcI" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="cEI-rw-9DP"/>
+                <constraint firstItem="RGo-Wo-rcI" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="h1s-7T-1WA"/>
+                <constraint firstItem="RB1-xA-4KF" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="nRl-Lq-zph"/>
+                <constraint firstItem="yW1-35-Sjz" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="rND-7e-2uw"/>
+                <constraint firstItem="RGo-Wo-rcI" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="s8v-d2-fi9"/>
+                <constraint firstItem="RB1-xA-4KF" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="ypP-wx-MEx"/>
+                <constraint firstItem="RB1-xA-4KF" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="z3t-o2-0L6"/>
+                <constraint firstItem="PNR-pZ-Kdc" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="zAL-3w-O3P"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="137.68115942028987" y="232.36607142857142"/>

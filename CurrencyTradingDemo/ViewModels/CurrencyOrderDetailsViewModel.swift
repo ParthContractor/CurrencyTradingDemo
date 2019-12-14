@@ -7,3 +7,14 @@
 //
 
 import Foundation
+
+class CurrencyOrderDetailsViewModel {
+    let objSelectedBitcoinPriceInfo: BitcoinPriceInfo
+    var navigationTitle: String {
+           return "Bitcoin Price" + "::" + self.objSelectedBitcoinPriceInfo.currencyName
+    }
+
+    init(_ bitcoinPriceInfo: BitcoinPriceInfo) {
+        self.objSelectedBitcoinPriceInfo = bitcoinPriceInfo
+    }
+}

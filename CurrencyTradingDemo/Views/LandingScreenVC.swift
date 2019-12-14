@@ -29,6 +29,10 @@ class LandingScreenVC: UIViewController {
         setUpData()
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     func initialSetUp(){
         tableViewBitcoinRateList.rowHeight = UITableView.automaticDimension
         tableViewBitcoinRateList.estimatedRowHeight = 126
@@ -80,10 +84,10 @@ class LandingScreenVC: UIViewController {
     @objc func initialBitcoinPriceInfoAvailable(_ notification: Notification)
     {
        //first time setup of price info arra done and hence add key value observers for objects..
-        for objPriceInfo in PriceInfoProvider.shared.bitcoinPriceInfoArray {//make sure it is not being updated???
-            objPriceInfo.addObserver(self, forKeyPath: "buyRate", options: [.new,.old], context: nil)
-            objPriceInfo.addObserver(self, forKeyPath: "sellRate", options: [.new,.old], context: nil)
-        }
+//        for objPriceInfo in PriceInfoProvider.shared.bitcoinPriceInfoArray {//make sure it is not being updated???
+//            objPriceInfo.addObserver(self, forKeyPath: "buyRate", options: [.new,.old], context: nil)
+//            objPriceInfo.addObserver(self, forKeyPath: "sellRate", options: [.new,.old], context: nil)
+//        }
         PriceInfoProvider.shared.sortByCurrencyName()
         reloadData()
     }
@@ -103,31 +107,31 @@ class LandingScreenVC: UIViewController {
         }
     }
 
-    override func observeValue(forKeyPath keyPath: String?,
-                                  of object: Any?,
-                                  change: [NSKeyValueChangeKey : Any]?,
-                                  context: UnsafeMutableRawPointer?) {
-        guard let change = change else {
-            return
-        }
-        
-        if let oldValue = change[.oldKey] {
-            print("Old value \(oldValue)")
-        }
-        
-        if let newValue = change[.newKey]  {
-            print("New value \(newValue)")
-            if object is BitcoinPriceInfo {
-                let obj = object as! BitcoinPriceInfo
-                print("object currency \(obj.currencyName)")
-                print("object currency  id  \(obj.ID ?? 0)")
-//                if let id = obj.ID {
-//                    reloadRow(id)
-//                }
-            }
-        }
-        
-    }
+//    override func observeValue(forKeyPath keyPath: String?,
+//                               of object: Any?,
+//                               change: [NSKeyValueChangeKey : Any]?,
+//                               context: UnsafeMutableRawPointer?) {
+//        guard let change = change else {
+//            return
+//        }
+//        
+//        if let oldValue = change[.oldKey] {
+//            print("Old value \(oldValue)")
+//        }
+//        
+//        if let newValue = change[.newKey]  {
+//            print("New value \(newValue)")
+//            if object is BitcoinPriceInfo {
+//                let obj = object as! BitcoinPriceInfo
+//                print("object currency \(obj.currencyName)")
+//                print("object currency  id  \(obj.ID ?? 0)")
+//                //                if let id = obj.ID {
+//                //                    reloadRow(id)
+//                //                }
+//            }
+//        }
+//        
+//    }
 }
 
 extension LandingScreenVC: UITableViewDataSource, UITableViewDelegate {
@@ -154,6 +158,14 @@ extension LandingScreenVC: UITableViewDataSource, UITableViewDelegate {
         cell.accessibilityIdentifier = viewModel.currencyLabelValue(indexPath.row)
         cell.animateLabelColor(animation, buyRateLabelValue: viewModel.buyRateLabelValue(indexPath.row), sellRateLabelValue: viewModel.sellRateLabelValue(indexPath.row))
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let objSelectedPriceInfo = PriceInfoProvider.shared.bitcoinPriceInfoArray[indexPath.row]
+        let viewModel = CurrencyOrderDetailsViewModel(objSelectedPriceInfo)
+        let currencyOrderDetailsVC = CurrencyOrderDetailsVC(nibName: "CurrencyOrderDetailsVC", viewModel: viewModel)
+        navigationController?.pushViewController(currencyOrderDetailsVC, animated:true)
     }
     
 }

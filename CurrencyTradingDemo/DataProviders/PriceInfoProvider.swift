@@ -111,20 +111,20 @@ final class PriceInfoProvider {
                     if newObj != matchedObj {
                         //update in existing element found hence update it in array and notify..
                         self.bitcoinPriceInfoArray[bitCoinPriceInfoCheck.matchedIndex!].setValue(newObj.currencyName, forKey:"currencyName")
-                        self.bitcoinPriceInfoArray[bitCoinPriceInfoCheck.matchedIndex!].setValue(newObj.buyRate, forKey:"buyRate")
-                        self.bitcoinPriceInfoArray[bitCoinPriceInfoCheck.matchedIndex!].setValue(newObj.sellRate, forKey:"sellRate")
+                        self.bitcoinPriceInfoArray[bitCoinPriceInfoCheck.matchedIndex!].setValue(newObj.buyRate, forKey:Constants.buyRateKeyPath)
+                        self.bitcoinPriceInfoArray[bitCoinPriceInfoCheck.matchedIndex!].setValue(newObj.sellRate, forKey:Constants.sellRateKeyPath)
                         self.bitcoinPriceInfoArray[bitCoinPriceInfoCheck.matchedIndex!].setValue(newObj.symbol, forKey:"symbol")
-                        print("update")
+//                        print("update")
                     }
                     else{
-                        print("no update")
+//                        print("no update")
                     }
                 }
                 else{
                     //new element found hence add it in array and notify..
                     newObj.ID = self.bitcoinPriceInfoArray.count
                     self.bitcoinPriceInfoArray.append(newObj)
-                    print("addition")
+//                    print("addition")
                 }
               }
           }
