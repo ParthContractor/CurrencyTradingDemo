@@ -43,7 +43,7 @@ This will return prices in JSON format. For more information see the simple API 
 * Limitations/known issues
   * LandingScreen::Minor user expereince concern in simultaneous tableview cells loading including animation of labels --> Here, List of bitcoin rates across of different countries shown and real time update happens based on API polling
 * Future scalability/requirements/features possibility/Scope of improvements
-  * Instead of API polling, we might go with silent push notifications
+  * Instead of API polling, we might go with silent push notifications if we're not relying on third party API source for getting bitcoin price data.
   * Although, here, usage of KVO along with proper state/flow management gives seamless experience(with code readability as well) , we might utilise thirdparty RxSwift or latest native offering SwiftUI+Combine.
 * Approach overview
   * Stick to MVP first with possibility of scaling slowly/periodically.
